@@ -9,12 +9,16 @@ void inicializar(int N){
     for(int i=0;i<N;i++){
         rep.push_back(i); // Me genera 0, 1, 2, 3, ...
         rk.push_back(0);
+
     }
 }
 
 int buscar(int x){
     if(x == rep[x]) return x;
-    else return rep[x] = buscar(rep[x]);
+    else{
+        rep[x] = buscar(rep[x]);
+        return rep[x];
+    }
 }
 
 void unir(int x, int y){
@@ -26,7 +30,7 @@ void unir(int x, int y){
     } else if (rk[x] < rk[y]) {
         rep[x] = y;
     } else { // rk[x] == rk[y]
-        if(x > y){
+        if(x > y){ // No es absolutamente necesario
             rep[y] = x;
             rk[x]++;
         }
@@ -49,5 +53,7 @@ int main(){
         cout<<rep[i]<<" ";
     }
     cout<<endl;
+    // Implementar size de cada conjunto
+    // e imprimirlo
     return 0;
 }
