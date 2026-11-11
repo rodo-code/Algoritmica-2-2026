@@ -32,16 +32,45 @@ void inicializar_segment_tree(int N){
     crear_segment_tree(1,0,N-1);
 }
 
+int consulta(int a, int b, int nodo, int izq, int der){
+    // Caso Base: Que el rango no me sirva
+    if(der < a || b < izq) return 0;
+    // Case Base: Que me sirva todo el rango
+    if(a <= izq && der <= b) return st[nodo];
+    // Paso recursivo
+    int medio = (izq+der)/2;
+    int resultado_izq = consulta(a,b,nodo*2,izq,medio);
+    int resultado_der = consulta(a,b,nodo*2+1,medio+1,der);
+    return resultado_izq + resultado_der;
+}
+
+void actualizar(int pos, int valor, int nodo, int izq, int der){
+    // COMPLETAR LA ACTUALIZACION
+}
+
 int main(){
-    int N;
+    int N,Q;
     cout<<"Ingrese cantidad de elementos: ";
     cin>>N;
     cout<<"Ingrese los "<<N<<" elementos: ";
     llenar_vector(N);
     inicializar_segment_tree(N);
-    for(int i=0;i<st.size();i++){
-        cout<<st[i]<<" ";
+    cout<<"Ingrese cantidad de consultas: ";
+    cin>>Q;
+    for(int i=0;i<Q;i++){
+        int tipo;
+        // Primero pedimos el tipo
+        cin>>tipo;
+        // Si el tipo es 1 es una consulta del rango [a,b]
+        if(tipo == 1){
+            int a,b;
+            cin>>a>>b;
+            cout<<consulta(a,b,1,0,N-1)<<endl;
+        }
+        // Si el tipo es 2 es una actualizacion de la posicion pos con valor val
+        if(tipo == 2){
+            // USARLA ACA
+        }
     }
-    cout<<endl;
     return 0;
 }
