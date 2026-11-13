@@ -18,8 +18,11 @@ int main(){
     // Imprimiendo el grafo
     for(int i=0;i<G.size();i++){
         cout<<"El nodo "<<i<<" esta conectado con: ";
-        for(int j=0;j<G[i].size();j++){
+        /*for(int j=0;j<G[i].size();j++){
             cout<<G[i][j]<<" ";
+        }*/
+        for(int vecino: G[i]){ // Para los vecinos de la lista G[i]
+            cout<<vecino<<" ";
         }
         cout<<endl;
     }
