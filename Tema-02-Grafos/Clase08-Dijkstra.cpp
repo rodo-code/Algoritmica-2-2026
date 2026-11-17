@@ -22,14 +22,11 @@ void DIJKSTRA(int nodo){
             // Si mejoramos la distancia
             int nodoVecino = vecino.first;
             int peso = vecino.second;
-            if(distancia+peso < dist[nodoVecino]) {
+            if(distancia+peso < dist[nodoVecino]) { // distancia == dist[nodo]
                 // Proceso para borrar si hubiera uno anterior
                 if(dist[nodoVecino]!=INT_MAX){
                     // Buscamos si existe un par (dist[nodoVecino], nodoVecino) en la cola
-                    auto it = pq.find(make_pair(dist[nodoVecino],nodoVecino));
-                    if(it!=pq.end()){ // Si fue encontrada la parejita
-                        pq.erase(it);
-                    }
+                    pq.erase(make_pair(dist[nodoVecino],nodoVecino));
                 }
                 // Insertamos la nueva pareja
                 dist[nodoVecino] = distancia+peso;
@@ -53,8 +50,7 @@ int main(){
         G[b].push_back(make_pair(a,peso));
     }
     DIJKSTRA(0);
-        // Recorrer la lista de Adyacencia 
-    for(int i=0;i<G.size();i++){
+    for(int i=0;i<nodos;i++){
         cout<<"El nodo "<<i<<" tiene como predecesor al nodo "<<p[i]<<" y distancia desde el 0 de "<<dist[i]<<endl;
     }
 }
