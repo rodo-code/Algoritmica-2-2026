@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// v guarda las aristas en formato (peso, (a,b) )
 vector< pair< int, pair<int,int> > > v;
 
 vector<int> rep, rk;
@@ -57,10 +58,10 @@ int main(){
             if(a>b) swap(a,b); // Intercambiamos a y b, para que a < b
             v.push_back(make_pair(peso,make_pair(a,b)));
         }
+        // ALGORITMO DE KRUSKAL
         sort(v.begin(),v.end()); // Ordenamos el vector por peso
-        // ALGORITMO DE KRUSKAL 
         int pesoMST = 0;
-        inicializar(nodos);
+        inicializar(nodos); // inicializar el UNION FIND
         for(auto arista: v){
             int peso = arista.first;
             int a = arista.second.first;
